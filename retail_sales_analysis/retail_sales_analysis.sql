@@ -53,3 +53,13 @@ SE retail_sales_analysis;
 SELECT *
 FROM sales
 WHERE age = 22;
+-- data exploration
+-- 1.How many sales
+SELECT COUNT(*) as total_sales
+FROM sales;
+-- 2.How many unique customers do we have
+SELECT COUNT(DISTINCT customer_id) as unique_customers
+FROM sales;
+-- 3.How many categories do we have
+SELECT COUNT(DISTINCT category) as unique_categories
+FROM sales;
