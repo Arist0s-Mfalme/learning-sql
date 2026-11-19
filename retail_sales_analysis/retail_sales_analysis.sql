@@ -63,3 +63,38 @@ FROM sales;
 -- 3.How many categories do we have
 SELECT COUNT(DISTINCT category) as unique_categories
 FROM sales;
+-- data analysis & business key problems & answers
+-- analysis & findings
+-- 1.Write a SQL query to retrieve all rows for sells made on '2022-11-05'
+SELECT *
+FROM sales
+WHERE sale_date = '2022-11-05';
+-- 2.Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022:
+USE retail_sales_analysis;
+SELECT *
+FROM sales
+WHERE category = 'clothing'
+    AND quantiy >= 4
+    AND DATE_FORMAT(sale_date, '%Y-%m') = '2022-10';
+-- 3.Write a SQL query to calculate the total sales (total_sale) for each category.
+SELECT category,
+    SUM(total_sale) as net_sale,
+    COUNT(*) as total_orders
+FROM sales
+GROUP BY 1;
+-- 4.Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category
+SELECT ROUND(AVG(age), 2) AS average_age
+FROM sales
+WHERE category = 'Beauty';
+-- 5.Write a SQL query to find all transactions where the total_sale is greater than 1000.
+SELECT *
+From sales
+WHERE total_sale > 1000;
+-- 6.Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.
+SELECT category,
+    gender,
+    COUNT(*) as total_trans
+FROM sales
+GROUP BY category,
+    gender
+ORDER BY category;
